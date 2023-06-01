@@ -18,7 +18,7 @@ const octokit = new Octokit({
 
 // Handle POST requests to api url
 router.post("/webhook-1", (req, res) => {
-  console.log(req.body);
+  console.log(req.params);
   res.send("Webhook 1 successfully received.");
 });
 
