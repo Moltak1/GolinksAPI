@@ -83,13 +83,12 @@ router.get("/api", async (req, res) => {
     headers: {
       'X-GitHub-Api-Version': '2022-11-28'
     },
-    q: 'user:' + username,
     per_page: 100,
     page: page
   })
   page++
   console.log(response)
-  response.data.items.forEach(parseRepo)
+  response.forEach(parseRepo)
   }
   while (response.incomplete_results == true)
 
