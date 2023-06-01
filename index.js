@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended: true}));
 
 //Simple frontend
 router.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html"
+  res.sendFile(__dirname + "/index.html")
 });
 
 //Octokit for github api
@@ -41,8 +41,10 @@ router.get("/api", async (req, res) => {
     headers: {
       'X-GitHub-Api-Version': '2022-11-28'
     },
-    q: 'user:' + username
+    q: 'user:' + username,
+    per_page: 100
   })
+
 
   let repocount = 0
   let stargazers = 0
