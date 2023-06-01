@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 
 // Use middleware to parse incoming requests with JSON and URL-encoded payloads
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended: true}));
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -19,6 +19,11 @@ app.use((err, req, res, next) => {
 router.get("/", (req, res) => {
   res.send("Welcome to the Webhook Server!");
 });
+
+//Octokit for github api
+const octokit = new Octokit({
+  auth: process.env.api_key
+})
 
 // Handle POST requests to specific URLs i.e. webhook endpoints
 router.post("/webhook-1", (req, res) => {
