@@ -38,8 +38,10 @@ router.post("/", async (req, res) => {
     },
     q: 'user:Moltak1'
   })
-  console.log(forked)
-  console.log(response.data);
+  function parseRepo(repo) {
+    console.log(repo)
+  }
+  response.data.items.forEach(parseRepo)
   res.send("Webhook 1 successfully received.");
 });
 
