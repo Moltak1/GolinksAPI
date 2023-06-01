@@ -8,6 +8,10 @@ const port = process.env.PORT;
 
 app.use(express.urlencoded({extended: true}));
 
+router.get("/", (req, res) => {
+  res.sendFile('index.html')
+})
+
 //Octokit for github api
 const octokit = new Octokit({
   auth: process.env.api_key
@@ -17,7 +21,6 @@ const octokit = new Octokit({
 router.post("/api", async (req, res) => {
   //Chceck for username and forked queries
   let username
-  console.log(req.query.username)
   if (typeof req.query.username === "string") {
     username = req.query.username;
   } else {
@@ -29,8 +32,6 @@ router.post("/api", async (req, res) => {
   if (req.query.forked) {
     forked = req.query.forked === "true"
   }
-  console.log(username)
-  console.log('user:' + username)
   //send github search api call
   const response = await octokit.request('GET /search/repositories', {
     headers: {
