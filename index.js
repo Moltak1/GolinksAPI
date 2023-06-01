@@ -13,13 +13,13 @@ app.use(express.urlencoded({extended: true}));
 
 //Simple frontend
 router.get("/", (req, res) => {
-  res.sendFile('index.html')
-})
+  res.sendFile('/index.html')
+});
 
 //Octokit for github api
 const octokit = new Octokit({
   auth: process.env.api_key
-})
+});
 
 // Handle POST requests to api url
 router.get("/api", async (req, res) => {
