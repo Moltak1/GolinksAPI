@@ -14,12 +14,12 @@ const octokit = new Octokit({
 })
 
 // Handle POST requests to api url
-router.post("/", async (req, res) => {
+router.post("/api", async (req, res) => {
   //Chceck for username and forked queries
   let username
   console.log(req.query.username)
   if (typeof req.query.username === "string") {
-    username = req.query.name;
+    username = req.query.username;
   } else {
     res.status(400);
     res.send("No name provided, or name was invalid");
