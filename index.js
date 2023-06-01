@@ -48,6 +48,8 @@ router.get("/api", async (req, res) => {
   function parseRepo(repo) {
     console.log(repo.fork)
     if (forked === false && repo.fork === true) {
+      console.log("skipped")
+      console.log(repo)
       return
     };
     repocount++;
