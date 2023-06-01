@@ -67,19 +67,18 @@ router.get("/api", async (req, res) => {
   //send github search api call
   let page = 1
   try {
-  do {
-  const response = await octokit.request('GET /users/{username}/repos', {
-    headers: {
-      'X-GitHub-Api-Version': '2022-11-28'
-    },
-    username: username,
-    per_page: 100,
-    page: page
-  })
-  page++
-  response.data.forEach(parseRepo)
-  }
-  while (response.incomplete_results == true)
+    do {
+      const response = await octokit.request('GET /users/{username}/repos', {
+        headers: {
+          'X-GitHub-Api-Version': '2022-11-28'
+        },
+        username: username,
+        per_page: 100,
+        page: page
+      })
+      page++
+      response.data.forEach(parseRepo)
+    } while (response.incomplete_results == true)
   } catch(error) {
     res.status(400);
     res.send("name was invalid");
