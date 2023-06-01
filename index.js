@@ -41,12 +41,35 @@ router.post("/", async (req, res) => {
     q: 'user:Moltak1'
   })
 
+  let repocount = 0
+  let stargazers = 0
+  let forks = 0
+  let sizes = []
+  let languages = {}
   //parse github search api response
   function parseRepo(repo) {
-    console.log(forked)
-    console.log(repo)
+    if (forked === false && repo.fork === true) {
+      return
+    };
+    repocount++;
+    stargazers += repo.stargazers_count;
+    forks += repo.forks_count;
+    sizes.push(repo.size)
+    for (language in repo.language) {
+      if (language in languages) {
+        languages.language++
+      }
+      else {
+        languages.language = 1
+      }
+    }
   }
   response.data.items.forEach(parseRepo)
+  console.log(repocount);
+  console.log(stargazers);
+  console.log(forks);
+  console.log(sizes);
+  console.log(languages);
 
   //output json
   res.send("Webhook 1 successfully received.");
