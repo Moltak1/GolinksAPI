@@ -9,7 +9,7 @@ const port = process.env.PORT;
 app.use(express.urlencoded({extended: true}));
 // Handle GET requests to the root URL
 router.get("/", (req, res) => {
-  res.send("This is a post api");
+  res.sendFile('index.html');
 });
 
 //Octokit for github api
