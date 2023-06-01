@@ -1,6 +1,6 @@
 const express = require("express");
 const { Octokit } = require("@octokit/core");
-const { query } = require("express");
+const { query, response } = require("express");
 
 
 // Create an Express app and listen for incoming requests on railway port
@@ -36,15 +36,7 @@ router.get("/api", async (req, res) => {
   if (req.query.forked) {
     forked = req.query.forked === "true"
   }
-  //send github search api call
-  const response = await octokit.request('GET /search/repositories', {
-    headers: {
-      'X-GitHub-Api-Version': '2022-11-28'
-    },
-    q: 'user:' + username,
-    per_page: 100
-  })
-  response.data.items.forEach(parseRepo)
+
 
   let repocount = 0
   let stargazers = 0
@@ -81,6 +73,23 @@ router.get("/api", async (req, res) => {
       addLanguage(repo.language)
     }
   }
+
+    
+  let page = 1
+  //send github search api call
+  do {
+  const response = await octokit.request('GET /search/repositories', {
+    headers: {
+      'X-GitHub-Api-Version': '2022-11-28'
+    },
+    q: 'user:' + username,
+    per_page: 100,
+    page: page
+  })
+  page++
+  response.data.items.forEach(parseRepo)
+  }
+  while (response.incomplete_results == true)
 
   //sort languages
   const languages_sorted = []
