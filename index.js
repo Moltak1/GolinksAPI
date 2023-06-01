@@ -78,7 +78,7 @@ router.get("/api", async (req, res) => {
   //send github search api call
   let page = 1
   do {
-  const response = await octokit.request('GET /users/{user}/repos', {
+  const response = await octokit.request('GET /repos/{user}', {
     headers: {
       'X-GitHub-Api-Version': '2022-11-28'
     },
