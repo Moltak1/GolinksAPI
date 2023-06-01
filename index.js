@@ -61,7 +61,9 @@ router.get("/api", async (req, res) => {
           languages[language] = 1
         }
     }
-    addLanguage(repo.language)
+    if (repo.language != null){
+      addLanguage(repo.language)
+    }
   }
 
   //send github search api call
