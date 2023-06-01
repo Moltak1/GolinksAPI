@@ -113,7 +113,7 @@ router.get("/api", async (req, res) => {
     "Repo Count" : repocount,
     "Stargazer Count" : stargazers,
     "Forks Count" : forks,
-    "Average Size": reduced_size + units[size_unit],
+    "Average Size": reduced_size.toFixed(2) + units[size_unit],
     "Languages": languages_sorted,
   };
   res.send(JSON.stringify(output));
