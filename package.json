@@ -1,0 +1,23 @@
+{
+  "name": "golinksapi",
+  "version": "1.0.0",
+  "description": "Backend intern hackday api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moltak1/GolinksAPI.git"
+  },
+  "author": "Daniel Posing",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Moltak1/GolinksAPI/issues"
+  },
+  "homepage": "https://github.com/Moltak1/GolinksAPI#readme",
+  "dependencies": {
+    "@octokit/core": "^4.2.1",
+    "express": "^4.18.2"
+  }
+}
