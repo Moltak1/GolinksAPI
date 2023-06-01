@@ -17,7 +17,7 @@ const octokit = new Octokit({
 })
 
 // Handle POST requests to api url
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   console.log(req.query);
   console.log(req.query.username)
   const response = await octokit.request('GET /search/repositories', {
