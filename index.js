@@ -8,7 +8,7 @@ const port = process.env.PORT;
 app.use(express.urlencoded({extended: true}));
 // Handle GET requests to the root URL
 router.get("/", (req, res) => {
-  res.send("Welcome to the Webhook Server!");
+  res.send("This is a post api");
 });
 
 //Octokit for github api
@@ -17,8 +17,9 @@ const octokit = new Octokit({
 })
 
 // Handle POST requests to api url
-router.post("/webhook-1", (req, res) => {
+router.post("/", (req, res) => {
   console.log(req.params);
+  console.log(req)
   res.send("Webhook 1 successfully received.");
 });
 
