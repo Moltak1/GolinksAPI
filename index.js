@@ -79,15 +79,16 @@ router.get("/api", async (req, res) => {
   //send github search api call
   let page = 1
   do {
-  const response = await octokit.request('GET /search/repositories', {
+  const response = await octokit.request('GET /users/'+ username +'/repos', {
     headers: {
       'X-GitHub-Api-Version': '2022-11-28'
     },
-    q: username,
+    q: 'user:' + username,
     per_page: 100,
     page: page
   })
   page++
+  console.log(response)
   response.data.items.forEach(parseRepo)
   }
   while (response.incomplete_results == true)
