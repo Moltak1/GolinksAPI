@@ -19,6 +19,15 @@ const octokit = new Octokit({
 // Handle POST requests to api url
 router.post("/", (req, res) => {
   console.log(req.query);
+
+  const response = await octokit.request('GET /search/repositories', {
+    headers: {
+      'X-GitHub-Api-Version': '2022-11-28'
+    }
+    q: 'user:Moltak1'
+  })
+
+  console.log(response);
   res.send("Webhook 1 successfully received.");
 });
 
