@@ -56,6 +56,7 @@ router.post("/", async (req, res) => {
     stargazers += repo.stargazers_count;
     forks += repo.forks_count;
     sizes += repo.size
+    console.log(repo.language)
     for (let language in repo.language) {
       console.log(language)
       if (language in languages) {
