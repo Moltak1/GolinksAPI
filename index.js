@@ -46,7 +46,6 @@ router.get("/api", async (req, res) => {
 
   //parse github search api response
   function parseRepo(repo) {
-    console.log(repo.fork)
     if (forked === false && repo.fork === true) {
       console.log("skipped")
       console.log(repo)
@@ -79,15 +78,15 @@ router.get("/api", async (req, res) => {
   //send github search api call
   let page = 1
   do {
-  const response = await octokit.request('GET /users/'+ username +'/repos', {
+  const response = await octokit.request('GET /users/{user}/repos', {
     headers: {
       'X-GitHub-Api-Version': '2022-11-28'
     },
+    user: username,
     per_page: 100,
     page: page
   })
   page++
-  console.log(response)
   response.forEach(parseRepo)
   }
   while (response.incomplete_results == true)
