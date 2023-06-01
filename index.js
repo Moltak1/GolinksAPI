@@ -74,9 +74,8 @@ router.get("/api", async (req, res) => {
     }
   }
 
-    
-  let page = 1
   //send github search api call
+  let page = 1
   do {
   const response = await octokit.request('GET /search/repositories', {
     headers: {
