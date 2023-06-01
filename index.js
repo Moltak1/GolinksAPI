@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
     q: 'user:Moltak1'
   })
 
-  console.log(response);
+  console.log(response.data);
   res.send("Webhook 1 successfully received.");
 });
 
