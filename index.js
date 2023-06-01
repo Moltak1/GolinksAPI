@@ -87,7 +87,7 @@ router.get("/api", async (req, res) => {
     page: page
   })
   page++
-  response.forEach(parseRepo)
+  response.data.forEach(parseRepo)
   }
   while (response.incomplete_results == true)
 
