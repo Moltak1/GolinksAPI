@@ -56,15 +56,24 @@ router.post("/", async (req, res) => {
     stargazers += repo.stargazers_count;
     forks += repo.forks_count;
     sizes += repo.size
-    console.log(repo.language)
-    for (let language in repo.language) {
-      console.log(language)
+    
+    function addLanguage(language) {
       if (language in languages) {
-        languages[language] = languages[language] + 1
+          languages[language] = languages[language] + 1
+        }
+        else {
+          languages[language] = 1
+        }
+    }
+    console.log(repo.language)
+    if (typeof repo.language === "object") {
+      for (let language in repo.language) {
+        console.log(language)
+        addLanguage(language)
       }
-      else {
-        languages[language] = 1
-      }
+    }
+    else {
+      addLanguage(repo.language)
     }
   }
   response.data.items.forEach(parseRepo)
