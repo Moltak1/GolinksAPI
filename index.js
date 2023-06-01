@@ -17,6 +17,7 @@ const octokit = new Octokit({
 router.post("/", async (req, res) => {
   //Chceck for username and forked queries
   let username
+  console.log(req.query.username)
   if (typeof req.query.username === "string") {
     username = req.query.name;
   } else {
