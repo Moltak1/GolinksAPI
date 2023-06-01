@@ -81,6 +81,13 @@ router.get("/api", async (req, res) => {
   }
   response.data.items.forEach(parseRepo)
 
+  //sort languages
+  const languages_sorted = []
+  for (let language in languages) {
+    languages_sorted.push([language, languages[language]]);
+  }
+
+  languages_sorted.sort((a,b) => b[1] - a[1]);
 
   //output json
   const output = {
@@ -88,7 +95,7 @@ router.get("/api", async (req, res) => {
     "Stargazer Count" : stargazers,
     "Forks Count" : forks,
     "Average Size": sizes / repocount,
-    "Languages": languages,
+    "Languages": languages_sorted,
   };
   res.send(JSON.stringify(output));
 });
