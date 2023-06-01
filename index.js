@@ -19,7 +19,7 @@ const octokit = new Octokit({
 // Handle POST requests to api url
 router.post("/", (req, res) => {
   console.log(req.query);
-
+  console.log(req.query.username)
   const response = await octokit.request('GET /search/repositories', {
     headers: {
       'X-GitHub-Api-Version': '2022-11-28'
