@@ -63,6 +63,7 @@ router.get("/api", async (req, res) => {
     }
     if (typeof repo.language === "object") {
       for (let language in repo.language) {
+        console.log(language)
         addLanguage(language)
       }
     }
