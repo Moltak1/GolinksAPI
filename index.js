@@ -60,7 +60,7 @@ router.post("/", async (req, res) => {
         languages.language++
       }
       else {
-        languages.language = 1
+        languages[language] = 1
       }
     }
   }
