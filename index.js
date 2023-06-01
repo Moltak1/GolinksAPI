@@ -36,7 +36,7 @@ router.get("/api", async (req, res) => {
   if (req.query.forked) {
     forked = req.query.forked === "true"
   }
-
+  console.log(forked)
 
   let repocount = 0
   let stargazers = 0
@@ -46,6 +46,7 @@ router.get("/api", async (req, res) => {
 
   //parse github search api response
   function parseRepo(repo) {
+    console.log(repo.fork)
     if (forked === false && repo.fork === true) {
       return
     };
