@@ -98,12 +98,22 @@ router.get("/api", async (req, res) => {
 
   languages_sorted.sort((a,b) => b[1] - a[1]);
 
+  //Calculate unites for average size
+  let units = ["KB", "MB", "GB"]
+  let size_unit = 0
+  let reduced_size = sizes / repocount
+  while (reduced_size >= 1000) {
+    size_unit++
+    reduced_size = reduced_size / 1000
+  }
+
+
   //output json
   const output = {
     "Repo Count" : repocount,
     "Stargazer Count" : stargazers,
     "Forks Count" : forks,
-    "Average Size": sizes / repocount,
+    "Average Size": reduced_size + units[size_unit],
     "Languages": languages_sorted,
   };
   res.send(JSON.stringify(output));
