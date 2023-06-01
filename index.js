@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended: true}));
 
 //Simple frontend
 router.get("/", (req, res) => {
-  res.sendFile('/index.html')
+  res.sendFile(__dirname + "/index.html"
 });
 
 //Octokit for github api
