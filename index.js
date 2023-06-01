@@ -46,6 +46,7 @@ router.post("/", async (req, res) => {
   let forks = 0
   let sizes = 0
   let languages = {}
+
   //parse github search api response
   function parseRepo(repo) {
     if (forked === false && repo.fork === true) {
@@ -55,7 +56,8 @@ router.post("/", async (req, res) => {
     stargazers += repo.stargazers_count;
     forks += repo.forks_count;
     sizes += repo.size
-    for (language in repo.language) {
+    for (let language in repo.language) {
+      console.log(language)
       if (language in languages) {
         languages[language] = languages[language] + 1
       }
