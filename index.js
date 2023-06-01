@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
     headers: {
       'X-GitHub-Api-Version': '2022-11-28'
     },
-    q: 'user:Moltak1'
+    q: 'user:' + username
   })
 
   let repocount = 0
