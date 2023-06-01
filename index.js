@@ -44,7 +44,7 @@ router.get("/api", async (req, res) => {
     q: 'user:' + username,
     per_page: 100
   })
-
+  response.data.items.forEach(parseRepo)
 
   let repocount = 0
   let stargazers = 0
@@ -81,7 +81,6 @@ router.get("/api", async (req, res) => {
       addLanguage(repo.language)
     }
   }
-  response.data.items.forEach(parseRepo)
 
   //sort languages
   const languages_sorted = []
