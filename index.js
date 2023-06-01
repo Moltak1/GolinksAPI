@@ -7,10 +7,6 @@ const router = express.Router();
 const port = process.env.PORT;
 
 app.use(express.urlencoded({extended: true}));
-// Handle GET requests to the root URL
-router.get("/", (req, res) => {
-  res.sendFile('index.html');
-});
 
 //Octokit for github api
 const octokit = new Octokit({
