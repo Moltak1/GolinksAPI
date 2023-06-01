@@ -65,14 +65,17 @@ router.post("/", async (req, res) => {
     }
   }
   response.data.items.forEach(parseRepo)
-  console.log(repocount);
-  console.log(stargazers);
-  console.log(forks);
-  console.log(sizes / repocount);
-  console.log(languages);
+
 
   //output json
-  res.send("Webhook 1 successfully received.");
+  const output = {
+    "Repo Count" : repocount,
+    "Stargazer Count" : stargazers,
+    "Forks Count" : forks,
+    "Average Size": sizes / repocount,
+    "Languages": languages,
+  };
+  res.send(JSON.stringify(output));
 });
 
 // Mount the router middleware
