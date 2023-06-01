@@ -1,6 +1,8 @@
 const express = require("express");
 const { Octokit } = require("@octokit/core");
 const { query } = require("express");
+
+
 // Create an Express app and listen for incoming requests on railway port
 const app = express();
 const router = express.Router();
@@ -8,6 +10,8 @@ const port = process.env.PORT;
 
 app.use(express.urlencoded({extended: true}));
 
+
+//Simple frontend
 router.get("/", (req, res) => {
   res.sendFile('index.html')
 })
@@ -18,7 +22,7 @@ const octokit = new Octokit({
 })
 
 // Handle POST requests to api url
-router.post("/api", async (req, res) => {
+router.get("/api", async (req, res) => {
   //Chceck for username and forked queries
   let username
   if (typeof req.query.username === "string") {
