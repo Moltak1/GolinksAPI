@@ -19,7 +19,7 @@ const octokit = new Octokit({
 
 // Handle POST requests to api url
 router.post("/", async (req, res) => {
-  console.log(req.query);
+  //Chceck for username and forked queries
   let username
   if (typeof req.query.username === "string") {
     username = req.query.name;
@@ -32,16 +32,23 @@ router.post("/", async (req, res) => {
   if (req.query.forked) {
     forked = req.query.forked === "true"
   }
+
+  //send github search api call
   const response = await octokit.request('GET /search/repositories', {
     headers: {
       'X-GitHub-Api-Version': '2022-11-28'
     },
     q: 'user:Moltak1'
   })
+
+  //parse github search api response
   function parseRepo(repo) {
+    console.log(forked)
     console.log(repo)
   }
   response.data.items.forEach(parseRepo)
+
+  //output json
   res.send("Webhook 1 successfully received.");
 });
 
