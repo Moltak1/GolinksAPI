@@ -76,6 +76,11 @@ router.get("/api", async (req, res) => {
     page: page
   })
   page++
+  if (response.status != 200) {
+    res.status(400);
+    res.send("name was invalid");
+    return
+  }
   response.data.forEach(parseRepo)
   }
   while (response.incomplete_results == true)
