@@ -1,5 +1,6 @@
 const express = require("express");
 const { Octokit } = require("@octokit/core");
+const { query } = require("express");
 // Create an Express app and listen for incoming requests on railway port
 const app = express();
 const router = express.Router();
@@ -19,14 +20,25 @@ const octokit = new Octokit({
 // Handle POST requests to api url
 router.post("/", async (req, res) => {
   console.log(req.query);
-  const username = req.query.username
+  let username
+  if (typeof req.query.username === "string") {
+    username = req.query.name;
+  } else {
+    res.status(400);
+    res.send("No name provided, or name was invalid");
+    return
+  }
+  let forked = true
+  if (req.query.forked) {
+    forked = req.query.forked === "true"
+  }
   const response = await octokit.request('GET /search/repositories', {
     headers: {
       'X-GitHub-Api-Version': '2022-11-28'
     },
     q: 'user:Moltak1'
   })
-
+  console.log(forked)
   console.log(response.data);
   res.send("Webhook 1 successfully received.");
 });
