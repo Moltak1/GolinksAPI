@@ -76,6 +76,7 @@ router.get("/api", async (req, res) => {
     page: page
   })
   page++
+  console.log(response.status);
   if (response.status != 200) {
     res.status(400);
     res.send("name was invalid");
