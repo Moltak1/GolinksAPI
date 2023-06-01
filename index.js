@@ -14,7 +14,7 @@ const octokit = new Octokit({
 })
 
 // Handle POST requests to api url
-router.post("/", async (req, res) => {
+router.get("/", async (req, res) => {
   //Chceck for username and forked queries
   let username
   if (typeof req.query.username === "string") {
