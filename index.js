@@ -28,7 +28,8 @@ router.post("/", async (req, res) => {
   if (req.query.forked) {
     forked = req.query.forked === "true"
   }
-
+  console.log(username)
+  console.log('user:' + username)
   //send github search api call
   const response = await octokit.request('GET /search/repositories', {
     headers: {
