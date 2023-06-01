@@ -66,6 +66,7 @@ router.get("/api", async (req, res) => {
 
   //send github search api call
   let page = 1
+  try {
   do {
   const response = await octokit.request('GET /users/{username}/repos', {
     headers: {
@@ -76,16 +77,14 @@ router.get("/api", async (req, res) => {
     page: page
   })
   page++
-  console.log(response.status);
-  if (response.status != 200) {
+  response.data.forEach(parseRepo)
+  }
+  while (response.incomplete_results == true)
+  } catch(error) {
     res.status(400);
     res.send("name was invalid");
     return
   }
-  response.data.forEach(parseRepo)
-  }
-  while (response.incomplete_results == true)
-
   //sort languages
   const languages_sorted = []
   for (let language in languages) {
